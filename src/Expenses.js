@@ -12,7 +12,7 @@ class Expenses extends Component {
    emptyItem = {
         description : '' ,
         expensedate : new Date(),
-        id:104,
+        id:'',
         location : '',
         category : {id:1 , name:'Travel'}
     }
@@ -30,6 +30,7 @@ class Expenses extends Component {
          this.handleSubmit= this.handleSubmit.bind(this);
          this.handleChange= this.handleChange.bind(this);
          this.handleDateChange= this.handleDateChange.bind(this);
+         this.handleCatChange = this.handleCatChange.bind(this);
   
       } 
 
@@ -38,6 +39,7 @@ class Expenses extends Component {
         const target= event.target;
         const value= target.value;
         const name = target.name;
+        
         let item={...this.state.item};
         item[name] = value;
         this.setState({item});
@@ -51,7 +53,21 @@ class Expenses extends Component {
         this.setState({item});
       
       }
+      handleCatChange(category) {
+        const target = category.target;
+        const value = target.value;
+        const idx = category.target.selectedIndex; 
+        let idex = category.target.selectedIndex;
+        let dataset = category.target.options[idex].text;
     
+        category = {...this.state.category}
+        category.id = idx + 1;
+        category.name = dataset;
+    
+        let item = { ...this.state.item};
+        item.category = category
+        this.setState({ item });
+      }
 
     async handleSubmit(event){
      
@@ -134,7 +150,7 @@ class Expenses extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Label for="category">Category</Label>
-                        <select onChange={this.handleChange}>
+                        <select onChange={this.handleCatChange}>
                                 {optionList}
                         </select>
                     </FormGroup>
