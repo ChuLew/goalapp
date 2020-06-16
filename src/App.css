@@ -23,6 +23,13 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.center{
+  align-items: center;
+  justify-content: center;
+}
+h3{
+  text-align: center;
+}
 
 .App-link {
   color: #61dafb;
@@ -35,4 +42,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+.form-wrapper {
+  display: flex;
+}
+
+.testingForm {
+  max-width: 320px;
+}
+
+.sidebyside {
+ 
 }
