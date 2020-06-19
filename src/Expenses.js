@@ -139,15 +139,36 @@ class Expenses extends Component {
                     <td>{expense.price}</td>
                     <td><Button size="sm" color="danger" onClick={() => this.remove(expense.id)}>Delete</Button></td>
                 </tr> )
+       
         let sum_value = Expenses.reduce((sum, current)=>{
             return sum + current.price
         }, 0);
+        let Grocery = 0;
+        let Housing = 0;
+        let Enjoyment = 0;
+        let Vacation = 0;
+        let Transportation = 0;
+        for (var i=0; i<Expenses.length; i++) {
+          let entry = Expenses[i];
+          if (entry.category.name === "Grocery"){
+            Grocery+=entry.price;
+          }
+          if (entry.category.name  === "Housing"){
+            Housing+=entry.price;
+          }
+          if (entry.category.name  === "Enjoyment"){
+            Enjoyment+=entry.price;
+          }
+          if (entry.category.name  === "Vacation"){
+            Vacation+=entry.price;
+          }
+          if (entry.category.name === "Transportation"){
+            Transportation+=entry.price;
+          }
+      }
+        
        // need to add proccessing where each of these percentages are calcuated
-        let Grocery = 18;
-        let Housing = 49;
-        let Enjoyment = 9;
-        let Vacation = 5;
-        let Transportation = 19;
+      
         const options = {
 			exportEnabled: true,
 			animationEnabled: true,
@@ -163,11 +184,11 @@ class Expenses extends Component {
 				indexLabelFontSize: 16,
 				indexLabel: "{label} - {y}%",
 				dataPoints: [
-					{ y: Grocery, label: "Grocery/Food" },
-					{ y: Housing, label: "Housing/Utilities" },
-					{ y: Enjoyment, label: "Entertainment/Enjoyment" },
-					{ y: Vacation, label: "Vacation" },
-					{ y: Transportation, label: "Transportation" }
+					{ y: parseInt(100*(Grocery/sum_value)), label: "Grocery/Food" },
+					{ y: parseInt(100*(Housing/sum_value)), label: "Housing/Utilities" },
+					{ y: parseInt(100*(Enjoyment/sum_value)), label: "Entertainment/Enjoyment" },
+					{ y: parseInt(100*(Vacation/sum_value)), label: "Vacation" },
+					{ y: parseInt(100*(Transportation/sum_value)), label: "Transportation" }
 				]
 			}]
 		}
@@ -180,7 +201,7 @@ class Expenses extends Component {
             <Container>
                 <div className="center">
                 <h3>Total Expenses:${sum_value}</h3>
-                </div>
+                </div> 
             <Table className = "mt-4">
                 <thead>
                     <tr>
