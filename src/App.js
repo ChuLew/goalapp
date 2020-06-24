@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Category from './Category';
 import Home from './Home';
 import Expenses from './Expenses';
+import Goal from './Goal';
 import {Route,BrowserRouter as Router,Switch} from 'react-router-dom'
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
                 <Switch>
                     <Route path = '/' exact={true} component ={Home}/>
                     <Route path = '/categories' exact={true} component ={Category}/>
+                    <Route path = '/goal' exact={true} component ={Goal}/>
                     <Route path = '/expenses' exact={true} component ={Expenses}/>
                 </Switch>
             </Router>

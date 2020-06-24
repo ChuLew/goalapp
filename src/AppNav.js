@@ -17,6 +17,9 @@ class AppNav extends Component {
                     <NavItem>
                       <NavLink href="/expenses">Expenses</NavLink>
                     </NavItem>
+                    <NavItem>
+                      <NavLink href="/goal">Goal</NavLink>
+                    </NavItem>
                   </Nav>
               </Navbar>
             </div>

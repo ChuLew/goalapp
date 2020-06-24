@@ -7,6 +7,7 @@ import {Table,Container,Input,Button,Label,Form,FormGroup} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import Moment from 'react-moment';
 import CanvasJSReact from './assets/canvasjs.react';
+import Popup from "reactjs-popup";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 class Expenses extends Component {
 
@@ -118,7 +119,6 @@ class Expenses extends Component {
     }
     render() { 
        
-        const title = <h2>Add Expense</h2>;
         const {categories} = this.state;
         const {Expenses,isLoading} = this.state;
         if (isLoading)
@@ -202,31 +202,14 @@ class Expenses extends Component {
                 <div className="center">
                 <h3>Total Expenses:${sum_value}</h3>
                 </div> 
-            <Table className = "mt-4">
-                <thead>
-                    <tr>
-                        <th width = "20%">Description</th>
-                        <th width = "10%">Location</th>
-                        <th width >Date</th>
-                        <th width >Category</th>
-                        <th width > Price </th>
-                        <th width = "10%">Action</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </Table>
-            </Container>
-            <Container>
-                {title}
+                <Container>
+                  <div className="center">
+                <Popup trigger={<button> Add New Expense</button>} position="right center">
                 <Form onSubmit = {this.handleSubmit}>
-                    <FormGroup className = "col-md-4 mb-3">
-                        <div className = "sidebyside">
+                    <FormGroup>
                         <Label for="description">Description of Expense</Label>
                         <Input type = "description" name = "description" id = "description"
                          onChange={this.handleChange} autoComplete = "name"/>
-                         </div>
                         <Label for ="location">Location</Label>
                         <Input type="text" name="location" id="location" onChange={this.handleChange}/>
                         <Label for="price">Price</Label>
@@ -247,6 +230,24 @@ class Expenses extends Component {
                         <Button color = "secondary" tag = {Link} to ="/">Cancel</Button>
                     </FormGroup>
                 </Form>
+                </Popup>
+                </div>
+            </Container>
+            <Table className = "mt-4">
+                <thead>
+                    <tr>
+                        <th width = "20%">Description</th>
+                        <th width = "10%">Location</th>
+                        <th width >Date</th>
+                        <th width >Category</th>
+                        <th width > Price </th>
+                        <th width = "10%">Action</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows}
+                </tbody>
+            </Table>
             </Container>
             </div>
             );
